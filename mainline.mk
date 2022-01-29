@@ -88,6 +88,10 @@ PRODUCT_PACKAGES += \
     android.hardware.health-service.example \
     android.hardware.health-service.example_recovery
 
+# Keymaster
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@4.1-service
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
