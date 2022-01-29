@@ -128,6 +128,14 @@ PRODUCT_PACKAGES += \
     android.hardware.power-service.example \
     android.hardware.power.stats-service.example
 
+# Rootdir
+PRODUCT_PACKAGES += \
+    init.mainline.rc \
+    init.mainline.usb.rc \
+    init.recovery.mainline.rc \
+    init.recovery.mainline.usb.rc \
+    ueventd.mainline.rc
+
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors-service.example
