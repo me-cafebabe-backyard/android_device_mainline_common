@@ -83,6 +83,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-service.software
 
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health-service.example \
+    android.hardware.health-service.example_recovery
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
