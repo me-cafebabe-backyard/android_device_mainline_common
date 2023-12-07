@@ -101,8 +101,8 @@ PRODUCT_PACKAGES += \
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health-service.example \
-    android.hardware.health-service.example_recovery
+    android.hardware.health-service.cuttlefish \
+    android.hardware.health-service.cuttlefish_recovery
 
 # Keymaster
 PRODUCT_PACKAGES += \
