@@ -28,11 +28,16 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # VINTF
-DEVICE_MANIFEST_FILE += $(COMMON_PATH)/manifest.xml
+DEVICE_MANIFEST_FILE += \
+    $(COMMON_PATH)/vintf/common_audio.xml \
+    $(COMMON_PATH)/vintf/common_camera.xml \
+    $(COMMON_PATH)/vintf/common_media.xml \
+    $(COMMON_PATH)/vintf/common_target_level_7.xml
+
 ifeq ($(TARGET_DISPLAY_ENABLE_DRM),true)
-DEVICE_MANIFEST_FILE += $(COMMON_PATH)/manifest_drm.xml
+DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/common_display_drm.xml
 else
-DEVICE_MANIFEST_FILE += $(COMMON_PATH)/manifest_fb.xml
+DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/common_display_fb.xml
 endif
 
 # Wi-Fi
