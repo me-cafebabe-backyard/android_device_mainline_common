@@ -7,6 +7,9 @@
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
+# Properties
+include $(LOCAL_PATH)/properties.mk
+
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 33
 
