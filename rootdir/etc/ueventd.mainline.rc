@@ -4,6 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+firmware_directories /vendor/firmware_mnt/image/
+
 # Backlights
 /sys/class/backlight/*              brightness 0660 system system
 
