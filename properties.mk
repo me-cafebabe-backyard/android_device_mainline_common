@@ -18,8 +18,10 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.adb.nonblocking_ffs=0
 
 # Vendor: Camera
+ifeq ($(TARGET_USES_COMMON_CAMERA),generic)
 PRODUCT_VENDOR_PROPERTIES += \
     ro.hardware.camera=v4l2
+endif
 
 # Vendor: DRM
 PRODUCT_VENDOR_PROPERTIES += \
@@ -40,6 +42,8 @@ PRODUCT_VENDOR_PROPERTIES += \
 endif
 
 # Vendor: Wi-Fi
+ifeq ($(TARGET_USES_COMMON_WIFI),generic)
 PRODUCT_VENDOR_PROPERTIES += \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15
+endif

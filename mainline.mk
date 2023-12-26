@@ -4,6 +4,25 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Flags
+TARGET_DISPLAY_ENABLE_DRM ?= false
+
+# dummy: HALs which does not provide any functionality, and are optional
+# generic: HALs which works for generic hardwares
+# minimal: HALs which provides none or minimal functionality, but required to boot
+# Others: Not to use common configuration
+TARGET_USES_COMMON_AUDIO ?= minimal
+TARGET_USES_COMMON_CAMERA ?= generic
+TARGET_USES_COMMON_GATEKEEPER ?= minimal
+TARGET_USES_COMMON_KEYMASTER ?= minimal
+TARGET_USES_COMMON_LIGHTS ?= dummy
+TARGET_USES_COMMON_HEALTH ?= minimal
+TARGET_USES_COMMON_POWER ?= minimal
+TARGET_USES_COMMON_SENSORS ?= dummy
+TARGET_USES_COMMON_THERMAL ?= minimal
+TARGET_USES_COMMON_USB ?= generic
+TARGET_USES_COMMON_WIFI ?= generic
+
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
@@ -20,6 +39,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.xml
 
 # Audio
+ifeq ($(TARGET_USES_COMMON_AUDIO),minimal)
 PRODUCT_PACKAGES += \
     android.hardware.audio@7.1-impl \
     android.hardware.audio.effect@7.0-impl \
@@ -32,7 +52,6 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default
 
-# Audio configs
 PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration_7_0.xml \
     frameworks/av/media/libeffects/data/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
@@ -44,8 +63,10 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/surround_sound_configuration_5_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/surround_sound_configuration_5_0.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
+endif
 
 # Camera
+ifeq ($(TARGET_USES_COMMON_CAMERA),generic)
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
@@ -56,10 +77,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.full.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.full.xml \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml
+endif
 
 # Display
-TARGET_DISPLAY_ENABLE_DRM ?= false
-
 ifeq ($(TARGET_DISPLAY_ENABLE_DRM),true)
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator-V1-service.minigbm \
@@ -101,21 +121,29 @@ PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
 
 # Gatekeeper
+ifeq ($(TARGET_USES_COMMON_GATEKEEPER),minimal)
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-service.software
+endif
 
 # Health
+ifeq ($(TARGET_USES_COMMON_HEALTH),minimal)
 PRODUCT_PACKAGES += \
     android.hardware.health-service.cuttlefish \
     android.hardware.health-service.cuttlefish_recovery
+endif
 
 # Keymaster
+ifeq ($(TARGET_USES_COMMON_KEYMASTER),minimal)
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1-service
+endif
 
 # Lights
+ifeq ($(TARGET_USES_COMMON_LIGHTS),dummy)
 PRODUCT_PACKAGES += \
     android.hardware.lights-service.example
+endif
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -129,9 +157,11 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_sw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml
 
 # Power
+ifeq ($(TARGET_USES_COMMON_POWER),minimal)
 PRODUCT_PACKAGES += \
     android.hardware.power-service.example \
     android.hardware.power.stats-service.example
+endif
 
 # Rootdir
 PRODUCT_PACKAGES += \
@@ -142,33 +172,41 @@ PRODUCT_PACKAGES += \
     ueventd.mainline.rc
 
 # Sensors
+ifeq ($(TARGET_USES_COMMON_SENSORS),dummy)
 PRODUCT_PACKAGES += \
     android.hardware.sensors-service.example
+endif
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
 # Thermal
+ifeq ($(TARGET_USES_COMMON_THERMAL),minimal)
 PRODUCT_PACKAGES += \
     android.hardware.thermal@2.0-service.mock
+endif
 
 # USB
+ifeq ($(TARGET_USES_COMMON_USB),generic)
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.host.xml
+endif
 
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator-service.example
 
 # Wi-Fi
+ifeq ($(TARGET_USES_COMMON_WIFI),generic)
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     hostapd \
     libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf
+endif
