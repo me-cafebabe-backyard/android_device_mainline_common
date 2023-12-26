@@ -131,6 +131,10 @@ ifeq ($(TARGET_USES_COMMON_HEALTH),minimal)
 PRODUCT_PACKAGES += \
     android.hardware.health-service.cuttlefish \
     android.hardware.health-service.cuttlefish_recovery
+else ifeq ($(TARGET_USES_COMMON_HEALTH),generic)
+PRODUCT_PACKAGES += \
+    android.hardware.health-service.example \
+    android.hardware.health-service.example_recovery
 endif
 
 # Keymaster
