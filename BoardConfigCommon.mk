@@ -10,7 +10,9 @@ COMMON_PATH := device/mainline/common
 TARGET_NO_BOOTLOADER := true
 
 # Graphics
+ifeq ($(TARGET_USES_COMMON_DISPLAY),minimal)
 TARGET_USES_VULKAN := true
+endif
 
 # Platform
 TARGET_BOARD_PLATFORM := mainline
@@ -32,10 +34,12 @@ ifeq ($(TARGET_USES_COMMON_CAMERA),generic)
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/common_camera_generic.xml
 endif
 
+ifeq ($(TARGET_USES_COMMON_DISPLAY),minimal)
 ifeq ($(TARGET_DISPLAY_ENABLE_DRM),true)
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/common_display_drm.xml
 else
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/vintf/common_display_fb.xml
+endif
 endif
 
 # Wi-Fi

@@ -17,6 +17,7 @@ TARGET_DISPLAY_ENABLE_DRM ?= false
 # Others: Not to use common configuration
 TARGET_USES_COMMON_AUDIO ?= minimal
 TARGET_USES_COMMON_CAMERA ?= generic
+TARGET_USES_COMMON_DISPLAY ?= minimal
 TARGET_USES_COMMON_GATEKEEPER ?= minimal
 TARGET_USES_COMMON_KEYMASTER ?= minimal
 TARGET_USES_COMMON_LIGHTS ?= dummy
@@ -84,6 +85,7 @@ PRODUCT_COPY_FILES += \
 endif
 
 # Display
+ifeq ($(TARGET_USES_COMMON_DISPLAY),minimal)
 ifeq ($(TARGET_DISPLAY_ENABLE_DRM),true)
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator-V1-service.minigbm \
@@ -119,6 +121,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.vulkan.deqp.level-2022-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml \
     frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.level.xml \
     frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version.xml
+endif
 
 # DRM
 PRODUCT_PACKAGES += \

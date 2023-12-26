@@ -30,6 +30,7 @@ PRODUCT_VENDOR_PROPERTIES += \
     drm.service.enabled=true
 
 # Vendor: Graphics
+ifeq ($(TARGET_USES_COMMON_DISPLAY),minimal)
 PRODUCT_VENDOR_PROPERTIES += \
     debug.hwui.renderer=skiagl \
     debug.sf.disable_hwc_overlays=1 \
@@ -41,6 +42,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 ifeq ($(TARGET_DISPLAY_ENABLE_DRM),true)
 PRODUCT_VENDOR_PROPERTIES += \
     ro.hardware.hwcomposer=drm
+endif
 endif
 
 # Vendor: Wi-Fi
