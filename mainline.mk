@@ -219,3 +219,6 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 endif
+
+# Inherit LineageOS value-adds
+include $(LOCAL_PATH)/mainline_lineage.mk

@@ -45,3 +45,6 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_HOSTAPD_DRIVER := NL80211
 endif
+
+# Inherit LineageOS value-adds
+include $(COMMON_PATH)/BoardConfigCommonLineage.mk
