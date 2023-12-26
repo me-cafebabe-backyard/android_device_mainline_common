@@ -5,12 +5,14 @@
 #
 
 # Product: ADB on boot
+ifeq ($(TARGET_BRINGUP_DEBUG),true)
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.adb.secure=0 \
     ro.secure=0 \
     ro.debuggable=1 \
     persist.service.debuggable=1 \
     persist.service.adb.enable=1
+endif
 
 # Vendor: ADB
 PRODUCT_VENDOR_PROPERTIES += \

@@ -5,6 +5,7 @@
 #
 
 # Flags
+TARGET_BRINGUP_DEBUG ?= false
 TARGET_DISPLAY_ENABLE_DRM ?= false
 
 # dummy: HALs which does not provide any functionality, and are optional
@@ -174,6 +175,10 @@ PRODUCT_PACKAGES += \
     init.recovery.mainline.rc \
     init.recovery.mainline.usb.rc \
     ueventd.mainline.rc
+
+ifeq ($(TARGET_BRINGUP_DEBUG),true)
+PRODUCT_PACKAGES += init.debug.rc
+endif
 
 # Sensors
 ifeq ($(TARGET_USES_COMMON_SENSORS),dummy)

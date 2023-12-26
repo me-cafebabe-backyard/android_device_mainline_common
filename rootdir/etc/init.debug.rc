@@ -1,0 +1,14 @@
+#
+# Copyright (C) 2023 The LineageOS Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+service vendor.log_to_cache /system/bin/logcat -f /cache/logs/log.txt
+    user system
+    group system log
+    disabled
+
+on post-fs
+    mkdir /cache/logs 0775 system log
+    start vendor.log_to_cache
