@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-COMMON_PATH := device/linux/mainline-common
+COMMON_PATH := device/mainline/common
 
 # APEX
 OVERRIDE_TARGET_FLATTEN_APEX := true
