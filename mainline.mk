@@ -4,6 +4,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Enable userspace reboot
+$(call inherit-product, $(SRC_TARGET_DIR)/product/userspace_reboot.mk)
+
 # Flags
 TARGET_BRINGUP_DEBUG ?= false
 TARGET_DISPLAY_ENABLE_DRM ?= false
